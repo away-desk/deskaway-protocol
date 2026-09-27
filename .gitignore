@@ -32,3 +32,12 @@ coverage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
