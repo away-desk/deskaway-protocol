@@ -1,0 +1,18 @@
+{
+  "description": "runId is required; a message outside any run uses the nil UUID.",
+  "direction": "inbound",
+  "message": {
+    "id": "a9f95603-7a66-432d-8da3-ed4070107bf5",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "traceId": "51f037ed-848b-4b33-9fee-07ea5653ca49",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/runId"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Desktop disconnects on purpose, so the relay can skip the 35-second grace window.",
+  "direction": "inbound",
+  "message": {
+    "id": "faec54b0-bbe1-4f58-a19c-4a06405465fe",
+    "type": "goodbye",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "7153bc16-e441-447a-bd96-4bee2d1e9b59",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  }
+}

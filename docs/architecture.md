@@ -11,9 +11,11 @@ It is not a running component: no process, no port, no runtime dependencies.
 
 ## What it deliberately does not do
 
-- **It contains no runtime code and no logic.** Not a validator, not a client, not a
+- **It contains no runtime code and no logic that ships.** Not a client, not a
   helper library. Those are generated or written in the consuming repos, so this
-  repo has no dependencies to age and nothing to ship on a security advisory.
+  repo has nothing to ship on a security advisory. `scripts/` and `test/` hold
+  the dev-only validator and envelope tests; `scripts/check-message.mjs` is the
+  reference each component reimplements, not a library they import.
 - **It does not commit generated code.** A checked-in artifact drifts from its
   source, and then somebody edits the artifact instead of the schema.
 - **It does not describe transport.** Framing, ordering and encoding are documented
@@ -28,7 +30,11 @@ It is not a running component: no process, no port, no runtime dependencies.
 
 ## Internal pieces, and how a message flows
 
-**`schemas/envelope.v1.json`** — the outer frame every message shares: identity,
+**`schemas/envelope-inbound.v1.json`, `envelope-outbound.v1.json`** — the outer
+frame every message shares, in its two states: as a device sends it (no relay
+block allowed) and as the relay delivers it (relay block of `from`,
+`receivedAt`, `sequence` required). Shared definitions live in
+`envelope.v1.json`. The frame carries identity,
 type, correlation, ordering.
 
 **`schemas/*/`** — payloads by concern. `control/` for connection lifecycle (hello,
@@ -69,9 +75,18 @@ Nothing flows at runtime. What flows is a *change*:
 ### At runtime, in the system these schemas describe
 
 Every message is an `envelope` wrapping one payload. A sender serializes the
-payload, wraps it, and writes it; a receiver validates the envelope, switches on
-its `message-type`, then validates the payload against that type's schema before
-anything reads a field. Validation precedes interpretation, in every component.
+payload, wraps it, and writes it; a receiver checks the frame's size, parses it,
+validates the envelope, switches on its `message-type`, then validates the
+payload against that type's schema before anything reads a field. Validation
+precedes interpretation, in every component. The exact order and the close
+reason for each failure are in `docs/wire-format.md`.
+
+A concrete trace: the desktop sends a `heartbeat` addressed `to: phone`. The
+relay checks it against `envelope-inbound`, never opens the payload, stamps a
+`relay` block — `from: desktop` taken from the authenticated connection,
+`receivedAt` from its own clock, the next `sequence` in the phone's stream — and
+delivers it. The phone checks it against `envelope-outbound`, then checks the
+payload against `control/heartbeat.v1.json`, because it is the addressee.
 
 ## Layering rules
 

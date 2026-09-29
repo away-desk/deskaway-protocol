@@ -1,0 +1,20 @@
+{
+  "description": "Relay tells a phone it has lost the session to another claim.",
+  "direction": "outbound",
+  "message": {
+    "id": "f9fa6805-7590-49ae-b2ce-44efadd007e7",
+    "type": "session-evicted",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "phone",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "d5d0d9ad-b85a-4419-b53e-eb14f93423bf",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {},
+    "relay": {
+      "from": "relay",
+      "receivedAt": "2026-09-29T13:00:00.412Z",
+      "sequence": 3
+    }
+  }
+}

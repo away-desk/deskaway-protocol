@@ -1,0 +1,18 @@
+{
+  "description": "envelopeVersion is required.",
+  "direction": "inbound",
+  "message": {
+    "id": "10f422b1-fe88-4758-92b2-84658a06e1a8",
+    "type": "heartbeat",
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "1ddd55f9-afa7-4ce1-967f-e967d3991b0e",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/envelopeVersion"
+  }
+}

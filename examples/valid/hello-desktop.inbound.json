@@ -1,0 +1,22 @@
+{
+  "description": "Desktop introduces itself on its first-ever connection: no session yet, nothing to resume.",
+  "direction": "inbound",
+  "message": {
+    "id": "38dc9901-d06e-479e-a26f-b6c4c967690b",
+    "type": "hello",
+    "envelopeVersion": 1,
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "b5e9fc29-6cdc-4795-9bb3-8037b1fadc2c",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "role": "desktop",
+      "deviceId": "2b7e4f1a-9c3d-4e8b-a6f2-1d0c5e9b7a34",
+      "deviceName": "Abhay-Laptop",
+      "os": "Windows 11 Home 26200",
+      "appVersion": "0.1.0",
+      "folder": "C:\\projects\\myapp",
+      "scopeVersion": 1
+    }
+  }
+}

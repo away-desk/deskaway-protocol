@@ -1,0 +1,19 @@
+{
+  "description": "A misspelt field is rejected, not silently ignored.",
+  "direction": "inbound",
+  "message": {
+    "id": "fe577c3e-b7f1-4214-a573-db94ab83d4ec",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "44b38fbc-2cab-4cca-bc5e-461d13e7b1af",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {},
+    "sesion": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68"
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/sesion"
+  }
+}

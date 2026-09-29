@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/enums/endpoint.json",
+  "title": "Endpoint",
+  "description": "The three places a message can come from or go to. Used by the envelope's `to` and by the relay-stamped `relay.from`.",
+  "type": "string",
+  "enum": [
+    "desktop",
+    "phone",
+    "relay"
+  ]
+}

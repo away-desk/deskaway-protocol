@@ -1,0 +1,8 @@
+{
+  "description": "A frame that is not JSON at all.",
+  "direction": "inbound",
+  "raw": "{\"id\": \"6f1c2b9e\", \"type\": hello",
+  "expect": {
+    "closeReason": "invalid-json"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "description": "The top level must be a JSON object.",
+  "direction": "inbound",
+  "message": [
+    {
+      "id": "e327b888-8c4a-4660-a83d-40e8f06f2d41",
+      "type": "heartbeat",
+      "envelopeVersion": 1,
+      "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+      "to": "relay",
+      "runId": "00000000-0000-0000-0000-000000000000",
+      "traceId": "5e5d2a01-c291-4dca-a00c-b2c3bb10ff67",
+      "sentAt": "2026-09-29T13:00:00.000Z",
+      "payload": {}
+    }
+  ],
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": ""
+  }
+}

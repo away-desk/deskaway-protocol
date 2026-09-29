@@ -1,0 +1,18 @@
+{
+  "description": "Desktop heartbeat with nothing in progress.",
+  "direction": "inbound",
+  "message": {
+    "id": "21c399fe-0422-4ccd-a9c1-2a3b0be4cb73",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "5ba96314-8553-41b0-b1de-004e0b7e3023",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "currentItemId": null,
+      "currentStepId": null
+    }
+  }
+}

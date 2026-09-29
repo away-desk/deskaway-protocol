@@ -1,0 +1,17 @@
+{
+  "description": "Phone claims control of a desktop.",
+  "direction": "inbound",
+  "message": {
+    "id": "da1ba459-ed7b-436e-a789-69d276891f90",
+    "type": "session-claim",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "424d57c4-c462-45d7-9bc9-bd437de26e90",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "desktopDeviceId": "2b7e4f1a-9c3d-4e8b-a6f2-1d0c5e9b7a34"
+    }
+  }
+}

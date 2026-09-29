@@ -1,0 +1,20 @@
+{
+  "description": "Relay heartbeat to the desktop, stamped with the relay block.",
+  "direction": "outbound",
+  "message": {
+    "id": "4ea96c95-b11b-48f1-a379-337b7efdd236",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "desktop",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "1d27c28e-0a17-4fc3-a9dc-ed4205def494",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {},
+    "relay": {
+      "from": "relay",
+      "receivedAt": "2026-09-29T13:00:00.412Z",
+      "sequence": 12
+    }
+  }
+}

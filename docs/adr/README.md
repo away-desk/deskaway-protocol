@@ -4,8 +4,18 @@ One file per decision made about this component. An ADR records *why* a choice
 was made, so nobody has to reverse-engineer the reasoning from the code — or
 worse, undo it without knowing what it was for.
 
-Nothing is recorded here yet. The first ADR arrives with the first decision worth
-arguing about.
+| ADR | Decision |
+| --- | --- |
+| [0001](./0001-routing-fields-on-the-envelope.md) | Routing fields live on the envelope; the relay never opens a payload it forwards |
+| [0002](./0002-inbound-outbound-envelopes.md) | Separate inbound and outbound envelopes |
+| [0003](./0003-uuid-v4-ids-and-nil-run-id.md) | UUID v4 ids, and the nil UUID for "no run" |
+| [0004](./0004-camelcase-on-the-wire.md) | camelCase field names on the wire |
+| [0005](./0005-envelope-version-field.md) | `envelopeVersion` versions the envelope only |
+| [0006](./0006-256-kib-message-limit.md) | A 256 KiB message limit, checked before parsing |
+| [0007](./0007-hello-resume-and-trust-labels.md) | `hello` carries resume, and labels verified versus self-reported fields |
+
+Relay behaviour built on these (stamping, closing on bad messages, resume)
+is recorded in `deskaway-relay/docs/adr/`.
 
 ## Format
 

@@ -1,0 +1,19 @@
+{
+  "description": "A delivered message without the relay block cannot be ordered or resumed.",
+  "direction": "outbound",
+  "message": {
+    "id": "2fcdab54-5654-47a2-8212-497c084986e6",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "desktop",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "3e934a09-fd60-4636-8bb0-330e97af5501",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/relay"
+  }
+}
