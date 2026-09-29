@@ -1,0 +1,19 @@
+{
+  "description": "No session is expressed by leaving the key out, never by an empty string.",
+  "direction": "inbound",
+  "message": {
+    "id": "13867024-e46a-4a33-b071-5bb418a79101",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "ec74268c-ab36-49c2-9616-322f2d345977",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/session"
+  }
+}

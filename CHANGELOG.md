@@ -9,6 +9,22 @@ and this repository follows [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Envelope v1, in two schemas: inbound (device to relay, relay block
+  forbidden) and outbound (relay to device, relay block of from, receivedAt
+  and sequence required), with shared definitions in envelope.v1.json.
+- Control message schemas: hello (with resume and trust-labelled fields),
+  heartbeat, goodbye, session-claim, session-evicted.
+- Enums: message-type (the five control types), close-reason, and a new
+  endpoint enum (desktop, phone, relay).
+- Wire rules: UUID v4 ids, nil UUID for no run, camelCase names, UTC
+  timestamps, unknown fields rejected, 256 KiB frame limit checked before
+  parsing.
+- Examples: 9 valid and 17 invalid, each invalid one naming the close reason
+  it must produce.
+- Tooling: npm run validate, a Python cross-check (npm run validate:py), and
+  an end-to-end envelope test (npm test), all run in CI.
+- ADRs 0001 to 0007 for the envelope decisions; wire-format, message-catalog
+  and versioning-policy docs written.
 - SECURITY.md: reporting route corrected. Private vulnerability reporting is a
   public-repository feature and was never enabled, so the file now routes
   reports through a repo issue and carries a checklist to work through before

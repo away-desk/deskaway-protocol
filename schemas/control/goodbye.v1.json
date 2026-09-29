@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/control/goodbye.v1.json",
+  "title": "goodbye v1",
+  "description": "A clean, deliberate disconnect. Lets the relay skip the 35-second grace window and mark the device gone at once, instead of waiting to find out. The payload is empty.",
+  "type": "object",
+  "additionalProperties": false
+}

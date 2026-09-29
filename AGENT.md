@@ -20,7 +20,9 @@ breaking-change question first.
     codegen-verify.yml    # generated output matches committed schemas
     publish.yml           # release the versioned contract
 schemas/
-  envelope.v1.json        # outer frame every message shares
+  envelope.v1.json        # shared envelope definitions, not validated directly
+  envelope-inbound.v1.json   # device -> relay; relay block forbidden
+  envelope-outbound.v1.json  # relay -> device; relay block required
   control/                # hello, goodbye, heartbeat, session-claim,
                           #   session-evicted
   pairing/                # pair-announce, pair-approve, pair-code
@@ -31,6 +33,7 @@ schemas/
   replay/                 # run-manifest, model-call-record
 enums/                    # shared closed vocabularies
   message-type.json       #   every envelope type
+  endpoint.json           #   desktop | phone | relay, for `to` and `relay.from`
   task-state.json
   autonomy-level.json
   reversibility-tier.json
@@ -43,7 +46,14 @@ compatibility/
   snapshots/v1/           # frozen v1 shapes, for regression checks
 examples/
   valid/                  # must pass validation
-  invalid/                # must fail, with the expected error
+  invalid/                # must fail, with the expected close reason
+scripts/                  # dev tooling only, never shipped
+  check-message.mjs       # reference check order: size, parse, envelope, payload
+  validate.mjs            # npm run validate
+  validate.py             # npm run validate:py — second-language cross-check
+  lib/contract.mjs        # loads every schema and enum into one validator
+test/                     # npm test — end-to-end envelope tests
+package.json              # validator dev dependencies only
 docs/
   wire-format.md          # framing, ordering, encoding
   message-catalog.md      # every message and when it is sent
@@ -70,6 +80,10 @@ code is built in the consuming repos, never committed here.
   bumps `VERSION`.
 - Every new message ships with at least one example under `examples/valid/`
   and one under `examples/invalid/`.
+- `npm run validate`, `npm test` and `npm run validate:py` all pass before a
+  schema change is committed.
+- Ids and timestamps are checked with `pattern`, never `format`, so every
+  language's validator agrees. Wire field names are camelCase.
 
 ## Rule: keep README.md current
 

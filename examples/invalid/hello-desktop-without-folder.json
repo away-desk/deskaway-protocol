@@ -1,0 +1,26 @@
+{
+  "description": "A desktop hello must say which folder it will work in.",
+  "direction": "inbound",
+  "message": {
+    "id": "636e9f04-700a-4171-a4be-6adea46ac1a1",
+    "type": "hello",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "f6eed013-9cb5-4df9-a868-663dc006bdb5",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "role": "desktop",
+      "deviceId": "2b7e4f1a-9c3d-4e8b-a6f2-1d0c5e9b7a34",
+      "deviceName": "Abhay-Laptop",
+      "os": "Windows 11 Home 26200",
+      "appVersion": "0.1.0",
+      "scopeVersion": 1
+    }
+  },
+  "expect": {
+    "closeReason": "invalid-payload",
+    "errorAt": "/payload/folder"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "description": "Every envelope carries a payload, even an empty one.",
+  "direction": "inbound",
+  "message": {
+    "id": "347a4436-7daf-41d3-916e-4a32f0730e04",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "f27b664b-d5ff-455f-8110-de7bc74f3985",
+    "sentAt": "2026-09-29T13:00:00.000Z"
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/payload"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "description": "Desktop reconnects to an existing session and asks for everything after sequence 47.",
+  "direction": "inbound",
+  "message": {
+    "id": "3194f685-f4a3-42fb-921e-eb11808368ae",
+    "type": "hello",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "cbf7e37f-7e34-4b69-9305-8d8d5b71d918",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "role": "desktop",
+      "deviceId": "2b7e4f1a-9c3d-4e8b-a6f2-1d0c5e9b7a34",
+      "deviceName": "Abhay-Laptop",
+      "os": "Windows 11 Home 26200",
+      "appVersion": "0.1.0",
+      "folder": "C:\\projects\\myapp",
+      "scopeVersion": 1,
+      "lastSeenSequence": 47
+    }
+  }
+}

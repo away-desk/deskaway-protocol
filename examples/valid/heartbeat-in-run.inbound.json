@@ -1,0 +1,18 @@
+{
+  "description": "Desktop heartbeat during a run: a real runId and the item and step in progress.",
+  "direction": "inbound",
+  "message": {
+    "id": "8c0bbf29-ddf1-4fce-84aa-86c4969cb547",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "e1b5d8a2-7c4f-4b3e-9a06-3f2d8c1b5e79",
+    "traceId": "b6e2647a-1466-4aed-88b9-4365ae38cb34",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "currentItemId": "5a7c3e1f-8b2d-4e6a-9c4b-0f1e2d3c4b5a",
+      "currentStepId": "9e2f4a6c-1d3b-4f5e-8a7c-6b4d2e0f1a3c"
+    }
+  }
+}

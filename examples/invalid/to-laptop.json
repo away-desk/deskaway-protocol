@@ -1,0 +1,19 @@
+{
+  "description": "to must be desktop, phone or relay.",
+  "direction": "inbound",
+  "message": {
+    "id": "19984ab4-407a-4818-9297-3edfb443b731",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "laptop",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "4c6d6b5e-f73e-4390-a927-03278e369a0f",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/to"
+  }
+}

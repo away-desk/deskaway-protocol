@@ -1,0 +1,23 @@
+{
+  "description": "A desktop claiming to be the phone by writing relay.from itself.",
+  "direction": "inbound",
+  "message": {
+    "id": "73ace4b2-6080-4049-ac6f-3cf57b954268",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "aa37d482-5969-4e4a-83ad-e3cd2794e5d3",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {},
+    "relay": {
+      "from": "phone",
+      "receivedAt": "2026-09-29T13:00:00.412Z",
+      "sequence": 1
+    }
+  },
+  "expect": {
+    "closeReason": "relay-fields-from-sender"
+  }
+}

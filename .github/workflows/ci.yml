@@ -138,3 +138,19 @@ jobs:
       - name: Validate schemas and examples
         if: steps.state.outputs.ready == 'true'
         run: npm run validate
+
+      - name: End-to-end envelope tests
+        if: steps.state.outputs.ready == 'true'
+        run: npm test
+
+      - name: Set up Python
+        if: steps.state.outputs.ready == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cross-check examples with a second validator
+        if: steps.state.outputs.ready == 'true'
+        run: |
+          pip install 'jsonschema>=4.18,<5'
+          npm run validate:py

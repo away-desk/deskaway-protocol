@@ -1,0 +1,18 @@
+{
+  "description": "A type not in enums/message-type.json.",
+  "direction": "inbound",
+  "message": {
+    "id": "f2590bd2-c249-456c-9c92-f9d9a4e65c58",
+    "type": "file-upload",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "29ea01d7-df65-48ab-a1dc-6452a366fdc5",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "unknown-type"
+  }
+}

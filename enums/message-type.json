@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/enums/message-type.json",
+  "title": "Message type",
+  "description": "Every value an envelope's `type` may take. Each value names exactly one payload schema, schemas/<category>/<type>.v1.json. Adding a value is a compatibility question: consumers may switch over this list exhaustively.",
+  "type": "string",
+  "enum": [
+    "hello",
+    "heartbeat",
+    "goodbye",
+    "session-claim",
+    "session-evicted"
+  ]
+}

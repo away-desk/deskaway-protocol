@@ -1,0 +1,19 @@
+{
+  "description": "id is a version 1 UUID, not version 4.",
+  "direction": "inbound",
+  "message": {
+    "id": "d9b2d63e-a233-11ee-8c90-0242ac120002",
+    "type": "heartbeat",
+    "envelopeVersion": 1,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "4aaa2a02-03b9-4150-98c9-78db8b74710a",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "invalid-envelope",
+    "errorAt": "/id"
+  }
+}

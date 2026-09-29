@@ -1,0 +1,18 @@
+{
+  "description": "A version this contract does not define is refused, not half-processed.",
+  "direction": "inbound",
+  "message": {
+    "id": "f2c31991-2941-4bd1-9931-065906edb9a5",
+    "type": "heartbeat",
+    "envelopeVersion": 2,
+    "session": "c4e9a1f7-2b6d-4f3e-8a5c-9d1b7e0f2a68",
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "e312b2cf-0075-4500-847c-7a28ee4fd2e9",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {}
+  },
+  "expect": {
+    "closeReason": "unsupported-envelope-version"
+  }
+}

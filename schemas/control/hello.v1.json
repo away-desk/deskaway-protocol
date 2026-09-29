@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/control/hello.v1.json",
+  "title": "hello v1",
+  "description": "Sent by a desktop or phone to the relay as the first message on every connection. It does two jobs: introduce the device, and say where it left off. Fields marked x-deskaway-trust `verified` are checked by the relay against the authenticated connection; `self-reported` fields are claims the relay cannot check and must never be presented as fact.",
+  "type": "object",
+  "required": ["role", "deviceId", "deviceName", "os", "appVersion"],
+  "properties": {
+    "role": {
+      "description": "Which kind of device this is. Verified: must match the role the device authenticated as, or the relay closes with device-mismatch.",
+      "x-deskaway-trust": "verified",
+      "enum": ["desktop", "phone"]
+    },
+    "deviceId": {
+      "description": "The device's id. Verified: must match the authenticated device, or the relay closes with device-mismatch.",
+      "x-deskaway-trust": "verified",
+      "$ref": "../envelope.v1.json#/$defs/uuidV4"
+    },
+    "deviceName": {
+      "description": "Human-readable device name. Self-reported.",
+      "x-deskaway-trust": "self-reported",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "os": {
+      "description": "Operating system and version, as the device describes itself. Self-reported.",
+      "x-deskaway-trust": "self-reported",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "appVersion": {
+      "description": "The DeskAway app version. Self-reported, but lets the relay turn away a client too old to speak this contract before a mismatch causes silent wrongness.",
+      "x-deskaway-trust": "self-reported",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "folder": {
+      "description": "Desktop only. The folder the desktop says it will confine work to. Self-reported: scope is a carried value, not an OS-enforced wall, and the relay cannot verify it. It is shown on the phone's approval screen as the desktop's claim, not a guarantee.",
+      "x-deskaway-trust": "self-reported",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "scopeVersion": {
+      "description": "Desktop only. Version of the scope rules the desktop is enforcing. Self-reported.",
+      "x-deskaway-trust": "self-reported",
+      "type": "integer",
+      "minimum": 1
+    },
+    "lastSeenSequence": {
+      "description": "The highest relay.sequence this device received in the session it is resuming. Absent on a first connection. The relay resends everything after it.",
+      "x-deskaway-trust": "self-reported",
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "role": { "const": "desktop" } },
+        "required": ["role"]
+      },
+      "then": {
+        "required": ["folder", "scopeVersion"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "role": { "const": "phone" } },
+        "required": ["role"]
+      },
+      "then": {
+        "properties": {
+          "folder": false,
+          "scopeVersion": false
+        }
+      }
+    }
+  ]
+}

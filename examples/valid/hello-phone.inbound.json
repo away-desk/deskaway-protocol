@@ -1,0 +1,20 @@
+{
+  "description": "Phone introduces itself. No folder or scopeVersion: those are desktop-only.",
+  "direction": "inbound",
+  "message": {
+    "id": "7a360898-705b-4883-b7a7-80a4f8573d08",
+    "type": "hello",
+    "envelopeVersion": 1,
+    "to": "relay",
+    "runId": "00000000-0000-0000-0000-000000000000",
+    "traceId": "20fc8534-5b8d-4e1b-9cc6-6f6f3998c940",
+    "sentAt": "2026-09-29T13:00:00.000Z",
+    "payload": {
+      "role": "phone",
+      "deviceId": "8d3a6c2e-5f1b-4a97-b0e4-c2f8a1d6e953",
+      "deviceName": "Pixel 8",
+      "os": "Android 16",
+      "appVersion": "0.1.0"
+    }
+  }
+}

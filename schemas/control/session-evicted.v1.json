@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/control/session-evicted.v1.json",
+  "title": "session-evicted v1",
+  "description": "Sent by the relay to a device that has lost its session to another claim, just before closing it with close reason `evicted`. The payload is empty; deliberately minimal until Day 14.",
+  "type": "object",
+  "additionalProperties": false
+}

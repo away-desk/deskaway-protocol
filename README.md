@@ -9,38 +9,34 @@ validate against these schemas.
 
 ## Status
 
-**Early development, nothing works yet.**
+**Early development. The envelope and the control messages are defined;
+nothing else is.**
 
-The directory layout and the message catalog's filenames are settled. The
-schema files themselves are still empty placeholders — no schema validates
-anything today, and no generated client exists. Do not build against this
-yet; the shapes are not stable.
+The envelope (inbound and outbound) and the five control messages — `hello`,
+`heartbeat`, `goodbye`, `session-claim`, `session-evicted` — are written,
+validated, and covered by examples and an end-to-end test. Pairing, task,
+command, approval and replay schemas are still empty placeholders. No
+generated client exists yet, and nothing has been released, so shapes can
+still change.
 
 ## Running locally
 
-There is nothing to run. This repo has no build and no service; the payoff
-is validation and codegen, and neither has an implementation yet.
-
-Once `codegen/` and `compatibility/checker/` are filled in, the intended
-loop is:
+There is no build and no service. You run the validator and the tests:
 
 ```sh
 git clone https://github.com/away-desk/deskaway-protocol.git
 cd deskaway-protocol
 
-# validate every schema and every example
-npm run validate
-
-# regenerate clients for one target
-npm run codegen -- --target typescript
-
-# check a proposed change against the frozen v1 snapshot
-npm run compat -- --against compatibility/snapshots/v1
+npm ci
+npm run validate      # every schema and every example
+npm test              # end-to-end envelope test
+npm run validate:py   # same examples through Python, to catch disagreement
 ```
 
-Those commands do not exist yet. Reading is the only thing that works right
-now, and `docs/wire-format.md` plus `docs/message-catalog.md` are the place
-to start — they are also still empty.
+Each prints `ok` or `fail 0` when all is well. `docs/local-setup.md` has the
+details. To understand the messages, start with `docs/wire-format.md` and
+`docs/message-catalog.md`. Codegen (`npm run codegen`) and the compatibility
+checker (`npm run compat`) do not exist yet.
 
 ## The rest of DeskAway
 
