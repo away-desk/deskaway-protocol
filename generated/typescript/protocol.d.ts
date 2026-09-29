@@ -86,7 +86,7 @@ export interface Common {
   /**
    * A lowercase UUID version 4. Enforced by pattern rather than `format` so every language checks it identically.
    */
-  traceId: string;
+  traceID: string;
   /**
    * RFC 3339 date-time in UTC, always ending in `Z`, with optional fractional seconds. Enforced by pattern rather than `format` so every language checks it identically.
    */
