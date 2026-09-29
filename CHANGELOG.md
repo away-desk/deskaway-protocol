@@ -25,6 +25,9 @@ and this repository follows [Semantic Versioning](https://semver.org/spec/v2.0.0
   an end-to-end envelope test (npm test), all run in CI.
 - ADRs 0001 to 0007 for the envelope decisions; wire-format, message-catalog
   and versioning-policy docs written.
+- Source-of-truth rule in AGENT.md: the two V1 plan files in the parent
+  folder are authoritative, changes land there first, and neither is edited
+  without explicit approval.
 - SECURITY.md: reporting route corrected. Private vulnerability reporting is a
   public-repository feature and was never enabled, so the file now routes
   reports through a repo issue and carries a checklist to work through before
