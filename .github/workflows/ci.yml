@@ -149,8 +149,23 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Cross-check examples with a second validator
+      - name: Type tests (a field typo must fail the build)
+        if: steps.state.outputs.ready == 'true'
+        run: npm run typecheck
+
+      - name: Cross-check examples with the Python package
         if: steps.state.outputs.ready == 'true'
         run: |
-          pip install 'jsonschema>=4.18,<5'
+          pip install ./generated/python
           npm run validate:py
+
+      - name: Node and Python checked the same number of examples
+        if: steps.state.outputs.ready == 'true'
+        run: |
+          node_counts=$(npm run -s validate | grep -Eo '[0-9]+ valid and [0-9]+ invalid')
+          py_counts=$(npm run -s validate:py | grep -Eo '[0-9]+ valid and [0-9]+ invalid')
+          echo "node: $node_counts | python: $py_counts"
+          if [ -z "$node_counts" ] || [ "$node_counts" != "$py_counts" ]; then
+            echo "::error::Node checked '$node_counts' but Python checked '$py_counts'"
+            exit 1
+          fi

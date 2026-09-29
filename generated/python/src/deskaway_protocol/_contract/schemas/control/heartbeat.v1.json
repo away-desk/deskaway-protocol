@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/control/heartbeat.v1.json",
+  "title": "heartbeat v1",
+  "description": "Sent every 7 seconds on an open connection, faster while a job is active. Missing heartbeats for 7 seconds marks the peer DEGRADED, for 35 seconds LOST. Carries what the sender is working on, when anything.",
+  "type": "object",
+  "properties": {
+    "currentItemId": {
+      "description": "The checklist item in progress, or null when none.",
+      "anyOf": [
+        { "$ref": "../envelope.v1.json#/$defs/uuidV4" },
+        { "type": "null" }
+      ]
+    },
+    "currentStepId": {
+      "description": "The step in progress, or null when none.",
+      "anyOf": [
+        { "$ref": "../envelope.v1.json#/$defs/uuidV4" },
+        { "type": "null" }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

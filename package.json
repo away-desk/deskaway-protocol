@@ -1,17 +1,43 @@
 {
-  "name": "deskaway-protocol-tooling",
+  "name": "@deskaway/protocol",
+  "version": "0.0.0",
   "private": true,
-  "description": "Dev tooling for the DeskAway wire contract: schema validation and the envelope end-to-end test. Nothing here ships.",
+  "description": "The DeskAway wire contract: JSON Schemas, generated TypeScript types, and the one validator every JavaScript consumer uses.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/away-desk/deskaway-protocol.git"
+  },
   "type": "module",
   "engines": {
     "node": ">=22"
   },
+  "exports": {
+    ".": {
+      "types": "./runtime/index.d.ts",
+      "default": "./runtime/index.mjs"
+    }
+  },
+  "files": [
+    "runtime/",
+    "generated/typescript/",
+    "schemas/",
+    "enums/",
+    "examples/"
+  ],
   "scripts": {
+    "codegen": "node codegen/generate.mjs",
+    "codegen:check": "node codegen/generate.mjs --check",
+    "typecheck": "tsc -p tsconfig.json",
     "validate": "node scripts/validate.mjs",
     "validate:py": "python scripts/validate.py",
     "test": "node --test \"test/**/*.test.mjs\""
   },
-  "devDependencies": {
+  "dependencies": {
     "ajv": "^8.17.1"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "16.0.0",
+    "typescript": "7.0.2"
   }
 }

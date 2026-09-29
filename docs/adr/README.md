@@ -13,6 +13,11 @@ worse, undo it without knowing what it was for.
 | [0005](./0005-envelope-version-field.md) | `envelopeVersion` versions the envelope only |
 | [0006](./0006-256-kib-message-limit.md) | A 256 KiB message limit, checked before parsing |
 | [0007](./0007-hello-resume-and-trust-labels.md) | `hello` carries resume, and labels verified versus self-reported fields |
+| [0008](./0008-bundle-types-and-validator.md) | The package ships the types and the validator together |
+| [0009](./0009-commit-generated-code.md) | Commit generated code, and enforce it with codegen-verify |
+| [0010](./0010-git-dependency-now-publish-at-day-20.md) | Consume the protocol as a pinned git dependency; publish at Day 20 |
+| [0011](./0011-two-envelope-types.md) | Inbound and outbound are two types, and inbound has no relay field |
+| [0012](./0012-hand-written-csharp-with-contract-tests.md) | C# types are hand-written, and held to the schema by contract tests on every build |
 
 Relay behaviour built on these (stamping, closing on bad messages, resume)
 is recorded in `deskaway-relay/docs/adr/`.

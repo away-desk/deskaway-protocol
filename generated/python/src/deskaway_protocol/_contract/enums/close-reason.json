@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/enums/close-reason.json",
+  "title": "Close reason",
+  "description": "Why the relay closed a connection. Any message that fails a check closes the connection; the reason names the first check it failed, in the order size, parse, envelope version, relay fields, type, envelope, payload.",
+  "type": "string",
+  "enum": [
+    "normal",
+    "evicted",
+    "message-too-large",
+    "invalid-json",
+    "unsupported-envelope-version",
+    "relay-fields-from-sender",
+    "unknown-type",
+    "invalid-envelope",
+    "invalid-payload",
+    "device-mismatch"
+  ]
+}

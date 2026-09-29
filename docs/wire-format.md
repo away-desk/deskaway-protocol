@@ -75,7 +75,9 @@ is `runId`, which may also be the nil UUID.
 
 Every receiver checks a message in this order and stops at the first failure,
 which names the close reason (`enums/close-reason.json`). The reference
-implementation is `scripts/check-message.mjs`.
+implementation is `runtime/check-message.mjs`, shipped in `@deskaway/protocol`;
+the Python package and the desktop's C# checker are ports that must agree with it
+on every example.
 
 1. **Size** over 256 KiB → `message-too-large`
 2. **Parse** fails → `invalid-json`
