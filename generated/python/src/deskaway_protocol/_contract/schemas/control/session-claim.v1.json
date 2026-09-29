@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/control/session-claim.v1.json",
+  "title": "session-claim v1",
+  "description": "Sent by a phone to the relay to take control of a desktop. One phone and one desktop per session; a claim evicts whichever phone held it before. Deliberately minimal until Day 14, where the claim rules are designed.",
+  "type": "object",
+  "required": ["desktopDeviceId"],
+  "properties": {
+    "desktopDeviceId": {
+      "description": "The desktop being claimed.",
+      "$ref": "../envelope.v1.json#/$defs/uuidV4"
+    }
+  },
+  "additionalProperties": false
+}

@@ -8,8 +8,8 @@
 // 4. Every message type has at least one valid example.
 
 import { join, relative } from 'node:path';
-import { loadContract, jsonFiles, readJson, ROOT } from './lib/contract.mjs';
-import { checkMessage } from './check-message.mjs';
+import { loadContract, jsonFiles, readJson, ROOT } from '../runtime/contract.mjs';
+import { checkMessage } from '../runtime/check-message.mjs';
 
 const problems = [];
 const problem = (file, text) => problems.push(`${relative(ROOT, file)}: ${text}`);

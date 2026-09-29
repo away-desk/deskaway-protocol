@@ -8,8 +8,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
-import { loadContract, jsonFiles, readJson, ROOT, MAX_MESSAGE_BYTES } from '../scripts/lib/contract.mjs';
-import { checkMessage } from '../scripts/check-message.mjs';
+import { loadContract, jsonFiles, readJson, ROOT, MAX_MESSAGE_BYTES } from '../runtime/contract.mjs';
+import { checkMessage } from '../runtime/check-message.mjs';
 
 const contract = loadContract();
 const NIL = '00000000-0000-0000-0000-000000000000';

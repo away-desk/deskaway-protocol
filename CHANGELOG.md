@@ -9,6 +9,21 @@ and this repository follows [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Generated TypeScript types (generated/typescript/protocol.d.ts) and a
+  Python package (generated/python), committed and checked by a new Codegen
+  verify workflow that fails on any difference from the schemas.
+- @deskaway/protocol: the repo is now a package shipping the types and the
+  message checker (createChecker), consumed as a pinned git dependency.
+- Discriminated InboundMessage and OutboundMessage types in both languages;
+  an inbound message has no relay field, so reading one is a type error.
+- Python package deskaway-protocol with the checker ported to Python, strict
+  mypy clean.
+- Type tests in TypeScript and Python proving a field typo fails to compile,
+  and a CI step failing if Node and Python checked different example counts.
+- ADRs 0008 to 0012: bundling types and validator, committing generated code,
+  git dependency until Day 20, two envelope types, hand-written C# held by
+  contract tests.
+
 - Envelope v1, in two schemas: inbound (device to relay, relay block
   forbidden) and outbound (relay to device, relay block of from, receivedAt
   and sequence required), with shared definitions in envelope.v1.json.
@@ -48,6 +63,11 @@ and this repository follows [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The check order moved from scripts/check-message.mjs to
+  runtime/check-message.mjs, so the code consumers import is the code tested.
+- scripts/validate.py now runs the installed Python package's checker instead
+  of its own copy of the logic.
+- ajv is now a runtime dependency; the package supports Node 22 and newer.
 - SECURITY.md rewritten for a public repository: vulnerabilities are reported
   through GitHub private vulnerability reporting, and the protections section
   now lists secret scanning, push protection and branch protection. The

@@ -45,3 +45,13 @@ rely on the guarantee it provided.
 
 Nothing is released yet and `VERSION` is empty. Until the first release, shapes
 change freely on `main`, and every change is still recorded in `CHANGELOG.md`.
+
+## How consumers pin a version until Day 20
+
+Nothing is published to npm or PyPI yet. Each consumer pins a **commit** of this
+repo — `github:away-desk/deskaway-protocol#<sha>` in the relay's
+`package.json`, `DeskAwayProtocolCommit` in the desktop's `build/protocol.props`
+— and moves it forward in a pull request of its own, which its CI checks. A
+protocol change therefore never breaks a consumer's build on its own; the
+consumer finds out when it chooses to move. See ADR 0010. Day 20 replaces the
+commit pins with published, versioned packages.

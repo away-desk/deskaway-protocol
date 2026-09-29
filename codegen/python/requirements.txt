@@ -1,0 +1,37 @@
+# Exact versions of the Python codegen toolchain. Generated output depends on
+# every one of these (the formatters especially), so codegen-verify installs
+# exactly this set. Regenerate with: pip install the top-level four below into
+# a clean venv, then pip freeze. Top level: datamodel-code-generator, black,
+# isort, mypy, types-jsonschema (plus jsonschema for the package tests).
+
+annotated-types==0.8.0
+argcomplete==3.7.2
+ast_serialize==0.11.2
+attrs==26.1.0
+black==26.5.1
+click==8.5.0
+datamodel-code-generator==0.83.0
+genson==1.4.0
+inflect==7.5.0
+isort==8.0.1
+Jinja2==3.1.6
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+librt==0.16.0
+MarkupSafe==3.0.3
+more-itertools==11.1.0
+mypy==2.3.1
+mypy_extensions==1.1.0
+packaging==26.3
+pathspec==1.1.1
+platformdirs==4.12.1
+pydantic==2.13.5
+pydantic_core==2.46.5
+pytokens==0.4.1
+PyYAML==6.0.3
+referencing==0.37.0
+rpds-py==2026.6.3
+typeguard==4.6.0
+types-jsonschema==4.26.0.20260518
+typing-inspection==0.4.4
+typing_extensions==4.16.0

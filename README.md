@@ -9,34 +9,49 @@ validate against these schemas.
 
 ## Status
 
-**Early development. The envelope and the control messages are defined;
-nothing else is.**
+**Early development. The envelope and the control messages are defined, and
+consumers can build against them; nothing else is.**
 
 The envelope (inbound and outbound) and the five control messages — `hello`,
-`heartbeat`, `goodbye`, `session-claim`, `session-evicted` — are written,
-validated, and covered by examples and an end-to-end test. Pairing, task,
-command, approval and replay schemas are still empty placeholders. No
-generated client exists yet, and nothing has been released, so shapes can
-still change.
+`heartbeat`, `goodbye`, `session-claim`, `session-evicted` — have schemas,
+examples, generated TypeScript and Python types, and a checker in each
+language. Pairing, task, command, approval and replay schemas are still empty
+placeholders. Nothing is published to a registry yet (that is Day 20):
+consumers pin a commit of this repo. Shapes can still change.
 
 ## Running locally
 
-There is no build and no service. You run the validator and the tests:
+There is no build and no service. You regenerate the types and run the checks:
 
 ```sh
 git clone https://github.com/away-desk/deskaway-protocol.git
 cd deskaway-protocol
 
 npm ci
-npm run validate      # every schema and every example
-npm test              # end-to-end envelope test
-npm run validate:py   # same examples through Python, to catch disagreement
+python -m venv .venv && .venv/Scripts/pip install -r codegen/python/requirements.txt
+
+npm run codegen:check   # generated/ matches the schemas
+npm run validate        # every schema and every example
+npm test                # end-to-end envelope test and the public API
+npm run typecheck       # a field typo must fail to compile
 ```
 
-Each prints `ok` or `fail 0` when all is well. `docs/local-setup.md` has the
-details. To understand the messages, start with `docs/wire-format.md` and
-`docs/message-catalog.md`. Codegen (`npm run codegen`) and the compatibility
-checker (`npm run compat`) do not exist yet.
+`docs/local-setup.md` has the full list, including the Python checks, and what
+healthy output looks like. To understand the messages, start with
+`docs/wire-format.md` and `docs/message-catalog.md`.
+
+### Using it from another repo
+
+```jsonc
+// package.json — pin a commit; move it forward on purpose
+"@deskaway/protocol": "github:away-desk/deskaway-protocol#<commit>"
+```
+
+```ts
+import { createChecker, type InboundMessage } from '@deskaway/protocol';
+```
+
+Python: `pip install "deskaway-protocol @ git+https://github.com/away-desk/deskaway-protocol@<commit>#subdirectory=generated/python"`.
 
 ## The rest of DeskAway
 

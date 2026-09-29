@@ -35,9 +35,9 @@ auto-updated.
   CODEOWNERS
   pull_request_template.md
   workflows/
-    validate.yml          # schema linting + example validation
-    codegen-verify.yml    # generated output matches committed schemas
-    publish.yml           # release the versioned contract
+    ci.yml                # repo hygiene; schemas, examples, tests, type
+                          #   tests, Python cross-check with count parity
+    codegen-verify.yml    # regenerate; fail if generated/ differs
 schemas/
   envelope.v1.json        # shared envelope definitions, not validated directly
   envelope-inbound.v1.json   # device -> relay; relay block forbidden
@@ -57,9 +57,22 @@ enums/                    # shared closed vocabularies
   autonomy-level.json
   reversibility-tier.json
   close-reason.json
-codegen/                  # per-language emitters; output is NOT committed
-  typescript/  python/  csharp/  kotlin/
+codegen/                  # generators; V1 targets TypeScript and Python
+  generate.mjs            # runs both; --check is codegen-verify
+  typescript/generate.mjs # pinned generator + composed message types
+  python/generate.py      # pinned generator + composed message types
+  python/runtime/         # hand-written Python checker, copied into the package
+  python/templates/       # the package's pyproject.toml
+  python/requirements.txt # exact codegen toolchain; output depends on it
+  csharp/  kotlin/        # empty in V1: C# and Kotlin are hand-written
   templates/              # shared emitter templates
+generated/                # COMMITTED output — never edit by hand
+  typescript/protocol.d.ts
+  python/                 # installable package: types, checker, schema copies
+runtime/                  # the JS checker every JS consumer imports
+  index.mjs, index.d.ts   # public API: createChecker, EXAMPLES_DIR, constants
+  check-message.mjs       # the check order: size, parse, envelope, payload
+  contract.mjs            # loads every schema and enum into one validator
 compatibility/
   checker/                # diffs a proposed schema against a snapshot
   snapshots/v1/           # frozen v1 shapes, for regression checks
@@ -67,12 +80,12 @@ examples/
   valid/                  # must pass validation
   invalid/                # must fail, with the expected close reason
 scripts/                  # dev tooling only, never shipped
-  check-message.mjs       # reference check order: size, parse, envelope, payload
   validate.mjs            # npm run validate
-  validate.py             # npm run validate:py — second-language cross-check
-  lib/contract.mjs        # loads every schema and enum into one validator
-test/                     # npm test — end-to-end envelope tests
-package.json              # validator dev dependencies only
+  validate.py             # npm run validate:py — the installed Python package
+test/                     # npm test — end-to-end envelope test, public API
+  types/                  # type tests: TypeScript (tsc) and Python (mypy)
+package.json              # @deskaway/protocol: runtime + generated types
+tsconfig.json             # for the type tests
 docs/
   wire-format.md          # framing, ordering, encoding
   message-catalog.md      # every message and when it is sent
@@ -85,8 +98,9 @@ CHANGELOG.md              # every contract change, newest first
 ```
 
 Directories holding only a `.gitkeep` are agreed structure with no content
-yet. `codegen/*/` will hold emitters, not generated artifacts — generated
-code is built in the consuming repos, never committed here.
+yet. `generated/` is committed on purpose (ADR 0009): consumers take a pinned
+git dependency on this repo, and codegen-verify guarantees it matches the
+schemas.
 
 ## Conventions
 
@@ -99,8 +113,15 @@ code is built in the consuming repos, never committed here.
   bumps `VERSION`.
 - Every new message ships with at least one example under `examples/valid/`
   and one under `examples/invalid/`.
-- `npm run validate`, `npm test` and `npm run validate:py` all pass before a
-  schema change is committed.
+- **Never edit `generated/` by hand.** Change the schema or the generator, run
+  `npm run codegen`, and commit the output in the same change.
+  `npm run codegen:check` and CI fail on any difference.
+- Everything in `docs/local-setup.md` → "Then run everything CI runs" passes
+  before a change is committed.
+- The check order lives in three places — `runtime/check-message.mjs`,
+  `codegen/python/runtime/check.py`, and the desktop's C# `MessageChecker`.
+  A change to one is a change to all three, and every example must still give
+  the same result in each.
 - Ids and timestamps are checked with `pattern`, never `format`, so every
   language's validator agrees. Wire field names are camelCase.
 

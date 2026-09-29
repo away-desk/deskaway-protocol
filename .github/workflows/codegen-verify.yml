@@ -1,0 +1,56 @@
+name: Codegen verify
+
+# Regenerates generated/ from the schemas and fails if the result differs from
+# what is committed. This is what makes "the schemas are the source of truth"
+# enforceable: a hand-edited generated file, a deleted one, or a schema
+# changed without regenerating all fail here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codegen-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Codegen verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the pinned toolchains
+        run: |
+          npm ci
+          pip install -r codegen/python/requirements.txt
+
+      - name: Regenerate and compare with what is committed
+        env:
+          PYTHON: python
+        run: npm run codegen:check
+
+      - name: Generated TypeScript type tests
+        run: npm run typecheck
+
+      - name: Generated Python type tests
+        run: |
+          pip install ./generated/python
+          mypy --strict -p deskaway_protocol
+          mypy --strict --warn-unused-ignores test/types/python_smoke.py

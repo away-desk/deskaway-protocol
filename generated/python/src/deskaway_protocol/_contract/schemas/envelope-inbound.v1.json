@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/envelope-inbound.v1.json",
+  "title": "Envelope v1 — inbound",
+  "description": "A message as a desktop or phone sends it to the relay. It must not carry a relay block: `from`, `receivedAt` and `sequence` are the relay's to write.",
+  "type": "object",
+  "allOf": [
+    { "$ref": "envelope.v1.json#/$defs/common" }
+  ],
+  "properties": {
+    "relay": false
+  },
+  "unevaluatedProperties": false
+}

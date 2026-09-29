@@ -1,0 +1,4 @@
+# Generated output is compared byte for byte by codegen-verify. Pin its line
+# endings so a Windows checkout can never produce a false difference.
+generated/** text eol=lf
+codegen/** text eol=lf

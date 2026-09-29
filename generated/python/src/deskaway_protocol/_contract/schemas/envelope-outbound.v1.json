@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deskaway.dev/protocol/schemas/envelope-outbound.v1.json",
+  "title": "Envelope v1 — outbound",
+  "description": "A message as the relay delivers it to a desktop or phone: the inbound envelope plus the relay block the relay stamped on it.",
+  "type": "object",
+  "allOf": [
+    { "$ref": "envelope.v1.json#/$defs/common" }
+  ],
+  "required": ["relay"],
+  "properties": {
+    "relay": { "$ref": "envelope.v1.json#/$defs/relayBlock" }
+  },
+  "unevaluatedProperties": false
+}

@@ -1,12 +1,13 @@
-// Loads every schema and enum in this repo into one Ajv instance, so any file
-// can $ref any other by its $id. Tooling only — consumers generate their own.
+// Loads every schema and enum in this package into one Ajv instance, so any file
+// can $ref any other by its $id. Shipped in @deskaway/protocol: every JS
+// consumer validates through this, never through its own setup.
 
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, relative, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 
-export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // 256 KiB of UTF-8, checked on the raw frame before it is parsed.
 export const MAX_MESSAGE_BYTES = 256 * 1024;

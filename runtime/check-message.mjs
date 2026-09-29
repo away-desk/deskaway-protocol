@@ -1,5 +1,7 @@
-// The reference order every component checks a message in. The relay copies
-// this on Day 6; the desktop and phone copy it for what the relay delivers.
+// The order every component checks a message in. JavaScript consumers import
+// this exact code through @deskaway/protocol. The Python package
+// (codegen/python/runtime/check.py) and the desktop's C# MessageChecker are
+// ports that must agree with it on every example in examples/.
 //
 //   1. size      — raw frame over 256 KiB          -> message-too-large
 //   2. parse     — not JSON                        -> invalid-json
@@ -15,7 +17,7 @@
 // it is forwarding.
 
 import { Buffer } from 'node:buffer';
-import { MAX_MESSAGE_BYTES, ENVELOPE_VERSION } from './lib/contract.mjs';
+import { MAX_MESSAGE_BYTES, ENVELOPE_VERSION } from './contract.mjs';
 
 const fail = (closeReason, errors = []) => ({ ok: false, closeReason, errors });
 
